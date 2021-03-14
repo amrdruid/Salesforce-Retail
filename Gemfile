@@ -25,8 +25,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'pg', '~> 1.1'
 gem 'postgresql', '1.0.0'
 
+gem 'figaro', '~> 1.2.0'
 gem 'restforce', '~> 5.0.5'
-
+gem 'sidekiq', '~> 6.1.3'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
