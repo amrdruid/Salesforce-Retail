@@ -51,6 +51,8 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
 
+  config.eager_load_paths << Rails.root.join('lib')
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
