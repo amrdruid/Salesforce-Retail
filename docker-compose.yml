@@ -35,6 +35,9 @@ services:
       # user called (arbitrarily) boats_development.
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  redis:
+    image: redis
+
   web:
     # The root directory from which we're building.
     build: .
@@ -66,6 +69,15 @@ services:
       DATABASE_USER: salesforce_development
       DATABASE_PASSWORD: 
       DATABASE_HOST: database
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/salesforce-retail
+    depends_on:
+      - database
+      - redis
 
 # Declare the volumes that our application uses.
 volumes:
