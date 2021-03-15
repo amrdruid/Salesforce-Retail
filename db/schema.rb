@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2021_03_14_094901) do
     t.string "country"
     t.string "state"
     t.string "phone"
-    t.bigint "dealers_id", null: false
+    t.bigint "dealer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["dealers_id"], name: "index_contact_infos_on_dealers_id"
+    t.index ["dealer_id"], name: "index_contact_infos_on_dealer_id"
   end
 
   create_table "dealers", force: :cascade do |t|
@@ -39,5 +39,5 @@ ActiveRecord::Schema.define(version: 2021_03_14_094901) do
     t.index ["sf_id"], name: "index_dealers_on_sf_id"
   end
 
-  add_foreign_key "contact_infos", "dealers", column: "dealers_id"
+  add_foreign_key "contact_infos", "dealers"
 end

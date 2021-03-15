@@ -38,3 +38,8 @@ module SalesforceRetail
     config.api_only = true
   end
 end
+
+Sentry.init do |config|
+  config.dsn = 'https://e9cb7447f34646288c61ad97106b644d@o530994.ingest.sentry.io/5651131'
+  config.breadcrumbs_logger = [:active_support_logger]
+end

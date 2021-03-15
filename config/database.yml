@@ -13,7 +13,15 @@ development:
   <<: *default
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: test_db
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: 5432
+  host: <%= ENV['DATABASE_HOST'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 production:
   <<: *default

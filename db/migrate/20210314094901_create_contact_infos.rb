@@ -7,7 +7,7 @@ class CreateContactInfos < ActiveRecord::Migration[6.1]
       t.string :country
       t.string :state
       t.string :phone
-      t.references :dealers, foreign_key: true, null: false
+      t.references :dealer, foreign_key: true, null: false
       t.timestamps
     end
   end
