@@ -1,0 +1,5 @@
+salesforce_host: ''
+salesforce_username: ''
+salesforce_password: ''
+salesforce_client_id: ''
+salesforce_client_secret: ''
