@@ -13,6 +13,7 @@ Hey! This project helps managing your salesforce account by adding your customer
 If you have a Docker and docker compose . That's a good start. If not, here're the links to install them
 
 Docker: https://docs.docker.com/get-docker/
+
 Docker Compose: https://docs.docker.com/compose/install/
 
 ## Clone the project
@@ -60,6 +61,6 @@ $ `rspec spec`
 
 --- 
 
-Areas for improvement: (Section WIP)
+Areas for Improvement: (Section WIP)
 
 ---
