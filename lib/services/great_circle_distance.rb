@@ -5,7 +5,7 @@ module Services
   # https://en.wikipedia.org/wiki/Great-circle_distance
   class GreatCircleDistance
     EARTH_MEAN_RADIUS_IN_KMS = 6371.009
-    MAX_DISTANCE_FROM_OFFICE = 100
+    MAX_DISTANCE_FROM_CURRENT_LOCATION = 100
 
     attr_reader :all_customers, :valid_customers
 
@@ -35,7 +35,7 @@ module Services
     end
 
     def customer_in_valid_distance?(distance)
-      distance <= MAX_DISTANCE_FROM_OFFICE
+      distance <= MAX_DISTANCE_FROM_CURRENT_LOCATION
     end
 
     def convert_to_radians(position)

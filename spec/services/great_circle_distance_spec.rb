@@ -20,7 +20,7 @@ describe Services::GreatCircleDistance do
       expect(Services::GreatCircleDistance::EARTH_MEAN_RADIUS_IN_KMS).to eq(6371.009)
     end
     it 'validates OFFICE_LATITUDE' do
-      expect(Services::GreatCircleDistance::MAX_DISTANCE_FROM_OFFICE).to eq(100)
+      expect(Services::GreatCircleDistance::MAX_DISTANCE_FROM_CURRENT_LOCATION).to eq(100)
     end
   end
 
