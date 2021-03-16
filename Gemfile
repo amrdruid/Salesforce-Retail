@@ -29,6 +29,7 @@ gem 'postgresql', '1.0.0'
 
 gem 'figaro', '~> 1.2.0'
 gem 'json'
+gem 'redis-rails', '~> 5.0', '>= 5.0.2'
 gem 'restforce', '~> 5.0.5'
 gem 'sidekiq', '~> 6.1.3'
 
@@ -43,8 +44,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.1.0'
+  gem 'faker'
   gem 'rspec-rails', '~> 4.1.0'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
