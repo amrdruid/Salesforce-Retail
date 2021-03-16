@@ -28,6 +28,10 @@ Docker Compose: https://docs.docker.com/compose/install/
 
 `$ docker-compose up`
 
+### Run Sidekiq in another window
+
+`$ docker-compose exec web bundle exec sidekiq`
+
 ### Run migrations
 
 `$ docker-compose exec web bundle exec rake db:migrate`
@@ -39,7 +43,7 @@ Create an `application.yml` file using `docker-compose exec web bundle exec figa
 you can find a sample file in `application.yml.sample`
 
 
-### Run the test suite (Tests WIP)
+### Run the test suite
 
 $ `rspec spec`
 
@@ -61,6 +65,11 @@ $ `rspec spec`
 
 --- 
 
-Areas for Improvement: (Section WIP)
+Areas for Improvement:
+
+1- Add authorization
+2- Possible caching when fetching dealers
+3- Passing different categories to Sidekiq if we had other categories involved
+4- Tests for models and routes, and one for the worker
 
 ---
