@@ -3,7 +3,7 @@ class DealerBuilder
 
   def initialize
     @dealer = Dealer.new
-    @dealer.contact_info
+    @dealer.contact_info = ContactInfo.new
   end
 
   def columns_values
@@ -63,6 +63,7 @@ class DealerBuilder
   def dealer
     obj = @dealer.dup
     @dealer = Dealer.new
+    @dealer.contact_info = ContactInfo.new
     obj
   end
 end

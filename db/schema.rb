@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_094901) do
   end
 
   create_table "dealers", force: :cascade do |t|
-    t.integer "sf_id", null: false
+    t.string "sf_id", null: false
     t.string "category", null: false
     t.string "name", null: false
     t.float "longitude"

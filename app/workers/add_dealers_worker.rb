@@ -3,11 +3,15 @@
 class AddDealersWorker
   include Sidekiq::Worker
 
-  def perform(dealers)
+  def perform
+    salesforce_api_handler = Services::SalesforceApiHandler.new
+    dealers = salesforce_api_handler.dealers_by_category(category: Dealer::CATEGORIES[:point_of_sale])
+
     # If there are too many we probably group them in batches and use ActiveRecord::Transaction
-    dealer_builder = DealerBuilder
-    dealers.each do |_key, value|
-      build_and_save_dealer(dealer_builder: dealer_builder, dealer_info: value)
+    dealer_builder = DealerBuilder.new
+
+    dealers.each do |dealer_info|
+      build_and_save_dealer(dealer_builder: dealer_builder, dealer_info: dealer_info)
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
     end
@@ -16,11 +20,11 @@ class AddDealersWorker
   private
 
   def build_and_save_dealer(dealer_builder:, dealer_info:)
-    return if Dealer.find(sf_id: column['id']).present?
+    return if Dealer.find_by(sf_id: dealer_info['Id']).present?
 
     # TODO: Map salesforce values to the correct column and use `dealer_builder.send("#{mapped_value}=")` for creation
-    dealer_builder.sf_id = dealer_info['id']
-    dealer_builder.name = dealer_info['name']
+    dealer_builder.sf_id = dealer_info['Id']
+    dealer_builder.name = dealer_info['Name']
     dealer_builder.category = dealer_info['E_Shop_Dealer__c']
     dealer_builder.longitude = dealer_info['Dealer_Longitude__c']
     dealer_builder.latitude = dealer_info['Dealer_Latitude__c']
