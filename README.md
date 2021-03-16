@@ -1,24 +1,66 @@
-# README
+<div align="center">
+  <br>
+  <h1>Salesforce Retail 👨‍💻</h1>
+</div>
+<br>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Summary
 
-Things you may want to cover:
+Hey! This project helps managing your salesforce account by adding your customers and retails to your database, filtering them based on distance, and more future features that will allow getting the best out of the data you have
 
-* Ruby version
+## Start the Project
 
-* System dependencies
+If you have a Docker and docker compose . That's a good start. If not, here're the links to install them
 
-* Configuration
+Docker: https://docs.docker.com/get-docker/
 
-* Database creation
+Docker Compose: https://docs.docker.com/compose/install/
 
-* Database initialization
+## Clone the project
 
-* How to run the test suite
+`$ git clone git@github.com:amrdruid/Salesforce-Retail.git`
 
-* Services (job queues, cache servers, search engines, etc.)
+### Run docker build
 
-* Deployment instructions
+`$ docker build .`
 
-* ...
+### Run docker compose to start the container
+
+`$ docker-compose up`
+
+### Run migrations
+
+`$ docker-compose exec web bundle exec rake db:migrate`
+
+### Add your salesforce credentials and secrets
+
+Create an `application.yml` file using `docker-compose exec web bundle exec figaro install`
+
+you can find a sample file in `application.yml.sample`
+
+
+### Run the test suite (Tests WIP)
+
+$ `rspec spec`
+
+--- 
+
+## Walkthrough
+
+- From `dealers_controller.rb` we have two main APIs, `add_point_of_sales_dealers` and `dealers_within_range`
+
+- `add_point_of_sales_dealers` allows adding retails to the database by internal employees
+
+- `dealers_within_range` returns the retails around your current lng and lat in form of JSON
+
+- We have a rake task that does what `add_point_of_sales_dealers` does. We can execute it through `docker-compose exec web bundle exec rake dealers:generate_and_save_to_db`
+
+- We use `Sentry` for tracking errors 
+
+- We use `Figaro` gem to manage secrets
+
+--- 
+
+Areas for Improvement: (Section WIP)
+
+---
