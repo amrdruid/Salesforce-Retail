@@ -5,14 +5,18 @@ require 'rails_helper'
 describe Services::GreatCircleDistance do
   before(:all) do
     # This array contains 5 customers within the range of the given latitude and longitude
-    @customers = [{ 'latitude' => '53.2451022', 'user_id' => 4, 'name' => 'Ian Kehoe', 'longitude' => '-6.238335' },
-                  { 'latitude' => '53.008769', 'user_id' => 11, 'name' => 'Richard Finnegan', 'longitude' => '-6.1056711' },
-                  { 'latitude' => '53.1302756', 'user_id' => 5, 'name' => 'Nora Dempsey', 'longitude' => '-6.2397222' },
-                  { 'latitude' => '54.0894797', 'user_id' => 8, 'name' => 'Eoin Ahearn', 'longitude' => '-6.18671' },
+    within_range = [{ 'latitude' => '53.2451022', 'longitude' => '-6.238335' },
+                    { 'latitude' => '53.008769', 'longitude' => '-6.1056711' },
+                    { 'latitude' => '53.1302756', 'longitude' => '-6.2397222' },
+                    { 'latitude' => '54.0894797', 'longitude' => '-6.18671' }]
 
-                  { 'latitude' => '53.1229599', 'user_id' => 6, 'name' => 'Theresa Enright', 'longitude' => '-6.2705202' },
-                  { 'latitude' => '52.833502', 'user_id' => 25, 'name' => 'David Behan', 'longitude' => '-8.522366' },
-                  { 'latitude' => '51.92893', 'user_id' => 1, 'name' => 'Alice Cahill', 'longitude' => '-10.27699' }]
+    outside_range = [{ 'latitude' => '53.1229599', 'longitude' => '-6.2705202' },
+                     { 'latitude' => '52.833502', 'longitude' => '-8.522366' },
+                     { 'latitude' => '51.92893', 'longitude' => '-10.27699' }]
+
+    @customers = (within_range + outside_range).map do |range|
+      FactoryBot.create(:dealer, latitude: range['latitude'], longitude: range['longitude'])
+    end
   end
 
   describe 'constants' do
@@ -31,7 +35,7 @@ describe Services::GreatCircleDistance do
       it 'generates customers that are within the MAX_DISTANCE_FROM_OFFICE range' do
         obj.generate_customers_to_invite
         expect(obj.valid_customers.size).to eq(5)
-        expect(obj.valid_customers.first).to be_a_kind_of(Hash)
+        expect(obj.valid_customers.first).to be_a_kind_of(Dealer)
       end
     end
 

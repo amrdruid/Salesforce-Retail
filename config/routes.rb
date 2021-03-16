@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json'} do
     scope module: :v1  do
       resources :dealers, only: [] do
-        post :add_point_of_sales_dealers
-        get :dealers_within_range
+        collection do 
+          post :add_point_of_sales_dealers
+          get :dealers_within_range
+        end
       end
     end
   end

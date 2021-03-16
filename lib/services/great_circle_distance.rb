@@ -11,8 +11,8 @@ module Services
 
     def initialize(customers_list, latitude, longitude)
       @all_customers = customers_list
-      @latitude = latitude
-      @longitude = longitude
+      @latitude = latitude.to_f
+      @longitude = longitude.to_f
     end
 
     def generate_customers_to_invite

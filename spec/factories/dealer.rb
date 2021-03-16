@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :dealer do
-    association :contact_info
+    name { Faker::Name.name }
+    sf_id { SecureRandom.uuid }
+    category { Dealer::CATEGORIES[:point_of_sale] }
   end
 end
