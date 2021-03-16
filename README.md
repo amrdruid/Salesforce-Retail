@@ -68,8 +68,11 @@ $ `rspec spec`
 Areas for Improvement:
 
 1- Add authorization
+
 2- Possible caching when fetching dealers
+
 3- Passing different categories to Sidekiq if we had other categories involved
+
 4- Tests for models and routes, and one for the worker
 
 ---
